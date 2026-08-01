@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AuraBeat · 音乐可视化器</title>
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <!-- 3D 画布容器 -->
+  <div id="stage"></div>
+
+  <!-- 启动遮罩：选择音乐来源 -->
+  <div id="launch" class="launch-overlay">
+    <div class="launch-card">
+      <h1 class="logo">AuraBeat<span class="logo-sub">音乐可视化器</span></h1>
+      <p class="tagline">把音乐变成一片流动的光</p>
+      <div class="launch-actions">
+        <label class="btn btn-primary" for="file-input">🎵 选择本地音乐</label>
+        <input type="file" id="file-input" accept="audio/*" hidden />
+        <button class="btn" id="mic-btn">🎤 麦克风实时输入</button>
+        <button class="btn" id="demo-btn">▶ 播放演示曲</button>
+      </div>
+      <p class="hint">也可以直接把音乐文件拖进页面</p>
+    </div>
+  </div>
+
+  <!-- 顶部工具栏 -->
+  <div id="toolbar" class="toolbar hidden">
+    <span class="track-name" id="track-name">未播放</span>
+    <div class="toolbar-right">
+      <button class="icon-btn" id="theme-btn" title="切换配色主题">🎨</button>
+      <button class="icon-btn" id="fullscreen-btn" title="全屏">⛶</button>
+      <button class="icon-btn" id="screenshot-btn" title="截图保存 PNG">📷</button>
+      <button class="icon-btn" id="back-btn" title="返回选择音乐">🏠</button>
+    </div>
+  </div>
+
+  <!-- 底部控制栏 -->
+  <div id="controls" class="controls hidden">
+    <button class="icon-btn" id="play-btn" title="播放/暂停">⏸</button>
+    <span class="time" id="time-current">0:00</span>
+    <input type="range" id="progress" min="0" max="1000" value="0" title="进度" />
+    <span class="time" id="time-total">0:00</span>
+    <div class="control-group">
+      <label for="sensitivity">灵敏度</label>
+      <input type="range" id="sensitivity" min="0.2" max="3" step="0.1" value="1" title="画面反应强度" />
+    </div>
+    <div class="control-group">
+      <label for="glow">光晕</label>
+      <input type="range" id="glow" min="0" max="2" step="0.1" value="1" title="粒子光晕强度" />
+    </div>
+  </div>
+
+  <!-- 麦克风音量指示 -->
+  <div id="mic-meter" class="mic-meter hidden">
+    <div class="mic-meter-bar" id="mic-meter-bar"></div>
+  </div>
+
+  <!-- 截图提示 -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

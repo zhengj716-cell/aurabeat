@@ -1,0 +1,277 @@
+/* ===== AuraBeat 基础样式 ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --accent: #7c5cff;
+  --text: #f0ecff;
+  --text-dim: rgba(240, 236, 255, 0.6);
+  --panel: rgba(20, 16, 40, 0.72);
+  --panel-border: rgba(255, 255, 255, 0.12);
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #05030f;
+  color: var(--text);
+  font-family: "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  user-select: none;
+}
+
+#stage {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+canvas {
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ===== 启动遮罩 ===== */
+.launch-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(ellipse at 50% 30%, rgba(124, 92, 255, 0.18), rgba(5, 3, 15, 0.92) 70%);
+  backdrop-filter: blur(6px);
+  transition: opacity 0.4s ease;
+}
+
+.launch-card {
+  text-align: center;
+  padding: 48px 56px;
+  border-radius: 20px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  font-size: 56px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(120deg, #7c5cff, #ff5c9d, #5cd0ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 6px;
+}
+
+.logo-sub {
+  display: block;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 8px;
+  color: var(--text-dim);
+  margin-top: 8px;
+}
+
+.tagline {
+  color: var(--text-dim);
+  margin: 14px 0 32px;
+  font-size: 15px;
+}
+
+.launch-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 999px;
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  background: linear-gradient(120deg, #7c5cff, #5c8dff);
+  border: none;
+  box-shadow: 0 6px 24px rgba(124, 92, 255, 0.4);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(120deg, #8a6cff, #6c9bff);
+  box-shadow: 0 8px 30px rgba(124, 92, 255, 0.55);
+}
+
+.hint {
+  margin-top: 22px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+/* ===== 工具栏 ===== */
+.toolbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 20px;
+  background: linear-gradient(to bottom, rgba(5, 3, 15, 0.6), transparent);
+}
+
+.track-name {
+  font-size: 14px;
+  color: var(--text-dim);
+  max-width: 40vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.toolbar-right {
+  display: flex;
+  gap: 8px;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--panel-border);
+  background: var(--panel);
+  color: var(--text);
+  font-size: 17px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, background 0.15s;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, 0.16);
+  transform: scale(1.08);
+}
+
+/* ===== 底部控制栏 ===== */
+.controls {
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  backdrop-filter: blur(10px);
+  max-width: 92vw;
+}
+
+.time {
+  font-size: 12px;
+  color: var(--text-dim);
+  min-width: 38px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+#progress {
+  width: 180px;
+  accent-color: var(--accent);
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+
+.control-group input[type="range"] {
+  width: 90px;
+  accent-color: var(--accent);
+}
+
+/* ===== 麦克风音量条 ===== */
+.mic-meter {
+  position: fixed;
+  bottom: 90px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  width: 220px;
+  height: 8px;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.mic-meter-bar {
+  height: 100%;
+  width: 0%;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #5cd0ff, #7c5cff, #ff5c9d);
+  transition: width 0.08s linear;
+}
+
+/* ===== Toast ===== */
+.toast {
+  position: fixed;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  font-size: 14px;
+  pointer-events: none;
+  animation: toast-in 0.3s ease;
+}
+
+@keyframes toast-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(-8px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* ===== 拖拽进入高亮 ===== */
+body.dragging::after {
+  content: "松开以播放 🎵";
+  position: fixed;
+  inset: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #fff;
+  background: rgba(124, 92, 255, 0.35);
+  backdrop-filter: blur(4px);
+}
