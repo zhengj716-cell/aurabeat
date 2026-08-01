@@ -288,5 +288,19 @@ document.addEventListener('keydown', (e) => {
 
 /* ---------- 启动 ---------- */
 
+// URL 参数：?demo 自动播放演示曲，?theme=flame|ice 指定主题，&clean=1 隐藏界面（演示/截图模式）
+const params = new URLSearchParams(location.search);
+if (params.get('theme')) {
+  const t = params.get('theme');
+  if (THEMES[t]) {
+    themeIndex = themeNames.indexOf(t);
+    scene.setTheme(t);
+  }
+}
+if (params.has('clean')) document.body.classList.add('clean');
+if (params.has('demo')) {
+  setTimeout(() => playDemo(), 400);
+}
+
 window.addEventListener('resize', () => scene.resize());
 rafId = requestAnimationFrame(frame);

@@ -275,3 +275,12 @@ body.dragging::after {
   background: rgba(124, 92, 255, 0.35);
   backdrop-filter: blur(4px);
 }
+
+/* ===== 演示/截图模式：隐藏全部界面 ===== */
+body.clean .launch-overlay,
+body.clean .toolbar,
+body.clean .controls,
+body.clean .mic-meter,
+body.clean .toast {
+  display: none !important;
+}
